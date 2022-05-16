@@ -1,0 +1,122 @@
+#王畅2130010006 2022/5/16
+#Q3-1
+class(1)    #"numeric"
+class(1L)   #"integer"
+class(1+1i) #"complex"
+#Q3-2
+gender<-factor(c("m","f","m","m","f"))
+levels(gender)   #"f" "m"
+nlevels(gender)  #2
+#Q3-3
+as.numeric("6.283185")
+#Q3-4
+print()
+View()
+browseEnv()
+#Q3-5 
+rm()
+#exercise3—1
+class(Inf)#"numeric"
+typeof(Inf)#"double"
+object.size(Inf)#56 bytes
+is(Inf)#"numeric" "vector"
+class(NA)#"logical"
+typeof(NA)#"logical"
+object.size(NA)#56 bytes
+is(NA)#"logical" "vector"
+class(NaN)#"numeric"
+typeof(NaN)#"double"
+object.size(NaN)#56 bytes
+is(NaN)#"numeric" "vector"
+#exercise3—2
+animals<-sample(c("dog","cat","hamaster","goldfish"),replace = TRUE,100)
+animals[1:10]#[1] "goldfish" "hamaster" "dog"      "goldfish" "cat"      "goldfish" "dog"      "hamaster" "hamaster"
+#[10] "hamaster"
+animals<-factor(animals)
+summary(animals) # cat      dog goldfish hamaster
+                 # 30       26       22       22
+#exercise3—3
+apple=3
+banana=2
+lemmon=1
+ls(pattern = "a")
+#Q4-1
+x<-seq.int(0,1.25,0.25)
+#Q4-2
+y<-c(1,2,3)
+c(apple=1,banana=2,peach=3)            #在定义时直接命名
+names(y)<-c("apple","banana","peach")  #先定义再命名
+#Q4-3
+#1.给向量传入正数         2.给向量传入负数
+#3.给向量传入一个逻辑向量 4.给向量传入命名的字符向量
+#Q4-4
+abc<-array(1:72,
+           dim=c(3,4,6))
+print(abc)
+length(abc)    #一个3×4×6的数组的长度是72
+#Q4-5
+A <- matrix(c(1, 5, 2, 9), nrow = 2);A
+B <- matrix(c(1, 2, 15, 9, 2, 7), nrow =2);B
+A %*% B   #来执行两个矩阵的内积
+#Q4(1)
+x1<-seq.int(11,50,3)
+x1-c(2,3)  #[1]  9 11 15 17 21 23 27 29 33 35 39 41 45 47
+#Q4(2)
+x2<-seq.int(1.1,4,20)
+x2*c(4,5,8,9)  #[1] 4.4 5.5 8.8 9.9
+#Q4(3)
+x3<-c(1,2,4,6)
+y3<-c(8,0,-1,-4)
+x3+y3  #[1] 9 2 3 2
+x3-y3  #[1] -7  2  5 10
+x3*y3  #[1]   8   0  -4 -24
+x3/y3  #[1]  0.125    Inf -4.000 -1.500
+#exercise4-1
+n<-seq_len(50)
+tri_num<-n*(n+1)/2
+names(tri_num)<-letters[seq_along(1:15)]
+tri_num[c("a","e","i","o")]
+#a   e   i   o
+#1  15  45 120
+#exercise4-2
+n1<-c(10:0,1:10)
+diag(n1,21,21)
+#Q5-1
+length(list(alpha = 1, list(beta = 2, gamma = 3, delta = 4), eta = NULL))#3
+#Q5-2
+# R还有另外一种形式的列表：成对列表（Pairlists）。成对列表仅
+#在内部使用，用于将参数传递到函数中，但你一般不会主动使用
+#到它们。而它唯一可能被显式调用的情形是在使用formals时。该
+#函数将返回一个函数参数的成对列表。
+#Q5-3
+#使用括号，通过提取我们想要的行和列来进行子集化
+#使用括号，通过省略我们不想要的行和列来进行子集化
+#使用括号，使用 which() 函数和 ％in％ 运算符组合进行子集化
+#使用 subset() 函数
+#使用 dplyr 包中的 filter() 和 select() 函数实现数据框子集化
+#Q5-4
+#列名必须是唯一且有效的变量名称。此功能可通过给 data.frame传入check.names = FALSE关闭
+#Q5-5
+cbind()  rbind()  merge()
+#当两个数据框有相同的列时，可使用merge函数合并，merge函数会使用两个数据框中所有共同的列但通常你会想
+#用一个共享ID列
+#exercise5-1
+m<-0:99
+sqrt_m<-sqrt(m)
+m1<-sqrt_m==floor(sqrt_m)
+m2<-m[m1]
+groups<-cut(m2,
+            seq.int(min(m),max(m),10),
+            include.lowest = TRUE,
+            right = FALSE)
+split(m2,groups)
+#exercise5-2
+a_data_frame<-data.frame(iris)
+colMeans(a_data_frame[,1:4])
+#exercise5-3
+b1_data_frame<-beaver1
+b2_data_frame<-beaver2
+new_beaver1=data.frame(id=rep(1,114),beaver1)
+new_beaver2=data.frame(id=rep(2,100),beaver2)
+new_beaver=rbind(new_beaver1,new_beaver2)
+new_beaver[new_beaver$activ==1,]
